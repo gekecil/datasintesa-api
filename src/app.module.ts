@@ -7,9 +7,13 @@ import { DataModule } from './data/data.module'
     imports: [
         ConfigModule.forRoot(),
         MongooseModule.forRoot(
-            `mongodb://${process.env.DB_HOST || 'localhost'}:${parseInt((process.env.DB_PORT || '27017'), 10)}`,
+            (process.env.DB_URL || 'mongodb://localhost:27017'),
             {
-                dbName: process.env.DB_NAME || 'datasintesa'
+                auth: {
+                    username: (process.env.DB_USERNAME || 'mongo'),
+                    password: (process.env.DB_PASSWORD || '')
+                },
+                dbName: (process.env.DB_NAME || 'datasintesa')
             }
         ),
         DataModule
