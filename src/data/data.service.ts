@@ -79,7 +79,7 @@ export class DataService {
             .where(
                 where
             )
-            .sort(['_id', -1])
+            .sort(['result_time', -1])
             .limit(100)
             .exec()
         )
